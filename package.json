@@ -23,7 +23,11 @@
         "url": "git+https://github.com/Yakima-Teng/classic-cli.git"
     },
     "keywords": [
-        "less"
+        "gulp",
+        "cli",
+        "HTML5",
+        "css",
+        "babel"
     ],
     "author": "Yakima (yakima.public@gmail.com)",
     "license": "MIT",
