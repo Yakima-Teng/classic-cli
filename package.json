@@ -24,14 +24,19 @@
     },
     "homepage": "https://github.com/Yakima-Teng/classic-cli#readme",
     "dependencies": {
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
         "chalk": "^4.0.0",
         "commander": "^5.1.0",
         "download-git-repo": "^3.0.2",
         "fs-extra": "^8.1.0",
         "glob": "^7.1.6",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-babel": "^8.0.0",
         "ora": "^4.0.4"
     },
     "engines": {
-        "node": ">=8"
+        "node": ">=9"
     }
 }
