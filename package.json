@@ -10,6 +10,7 @@
         "classic": "node bin/classic",
         "test": "npm run classic -- -p 8080 -t remote"
     },
+    "files": ["bin", "lib", "LICENSE", "package.json", "package-lock.json", "README.md"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Yakima-Teng/classic-cli.git"
