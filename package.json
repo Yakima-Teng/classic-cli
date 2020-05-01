@@ -38,5 +38,15 @@
     },
     "engines": {
         "node": ">=9"
+    },
+    "browserslist": {
+        "production": [
+            ">0.01%",
+            "last 20 version"
+        ],
+        "development": [
+            ">0.01%",
+            "last 20 version"
+        ]
     }
 }
