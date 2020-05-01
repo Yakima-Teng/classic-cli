@@ -1,0 +1,25 @@
+const { program } = require('commander')
+const chalk = require('chalk')
+const pkg = require('../package')
+const start = require('../lib/start')
+
+program.version(pkg.version)
+
+const defaultPort = 8080
+program
+    .option('-p, --port <port number>', `define the server port to be used, default is ${defaultPort}`, defaultPort)
+
+program.parse(process.argv)
+
+if (program.port) {
+    console.log(
+        [
+            chalk.green(`You are starting using ${parseInt(program.port, 10) === defaultPort ? 'the default port' : 'port'}: ${chalk.red(program.port)}.`),
+            '',
+            chalk.yellow(`If port ${program.port} is already employed by other tasks, you can use commands like "classic -p 8081" to specify another port number.`),
+            '',
+        ].join('\n'),
+    )
+}
+
+start()

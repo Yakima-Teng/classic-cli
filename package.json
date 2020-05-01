@@ -1,0 +1,30 @@
+{
+    "name": "classic-cli",
+    "version": "0.0.1",
+    "description": "一个快速创建H5专题页的命令行工具，方便使用者使用构建工具进行无侵入式开发（可随时脱离构建工具）。",
+    "main": "bin/classic",
+    "bin": {
+        "classic": "bin/classic"
+    },
+    "scripts": {
+        "classic": "node bin/classic",
+        "test-classic": "npm run classic -- -p 8080"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Yakima-Teng/classic-cli.git"
+    },
+    "keywords": [
+        "less"
+    ],
+    "author": "Yakima (yakima.public@gmail.com)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Yakima-Teng/classic-cli/issues"
+    },
+    "homepage": "https://github.com/Yakima-Teng/classic-cli#readme",
+    "dependencies": {
+        "chalk": "^4.0.0",
+        "commander": "^5.1.0"
+    }
+}
