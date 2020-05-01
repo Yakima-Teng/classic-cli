@@ -8,6 +8,7 @@ program.version(pkg.version)
 const defaultPort = 8080
 program
     .option('-p, --port <port number>', `define the server port to be used, default is ${defaultPort}`, defaultPort)
+    .option('-t, --template <port number>', `whether use local template or remote template, available values are 'local' and 'remote' (defalut)`, 'remote')
 
 program.parse(process.argv)
 
@@ -22,4 +23,7 @@ if (program.port) {
     )
 }
 
-start()
+start({
+    port: program.port,
+    useLocalTemplate: program.template === 'local',
+})
