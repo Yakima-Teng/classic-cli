@@ -36,6 +36,7 @@
         "gulp-babel": "^8.0.0",
         "gulp-beautify": "^3.0.0",
         "gulp-clean-css": "^4.3.0",
+        "gulp-connect": "^5.7.0",
         "gulp-if": "^3.0.0",
         "gulp-uglify": "^3.0.2",
         "ora": "^4.0.4"
