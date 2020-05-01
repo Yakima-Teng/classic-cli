@@ -1,5 +1,17 @@
 # classic-cli
 
+<p align="center">
+  <a href="https://npmcharts.com/compare/classic-cli?minimal=true">
+    <img src="https://img.shields.io/npm/dm/classic-cli.svg" alt="Downloads">
+  </a>
+  <a href="https://www.npmjs.com/package/classic-cli">
+    <img src="https://img.shields.io/npm/v/classic-cli.svg" alt="Version">
+  </a>
+  <a href="https://www.npmjs.com/package/classic-cli">
+    <img src="https://img.shields.io/npm/l/classic-cli.svg" alt="License">
+  </a>
+</p>
+
 > 一个快速创建H5专题页的命令行工具，方便使用者使用构建工具进行无侵入式开发（可随时脱离构建工具）。
 
 ***注意：需要使用硬盘文件内容变动能在编辑器中及时体现出来的编辑器，尽量不要用Webstorm、IDEA这类IDE（这类IDE默认情况下会对文件进行一个缓存）。***
