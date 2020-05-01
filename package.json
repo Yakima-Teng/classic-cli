@@ -8,7 +8,7 @@
     },
     "scripts": {
         "classic": "node bin/classic",
-        "test-classic": "npm run classic -- -p 8080"
+        "test": "npm run classic -- -p 8080"
     },
     "repository": {
         "type": "git",
@@ -25,6 +25,10 @@
     "homepage": "https://github.com/Yakima-Teng/classic-cli#readme",
     "dependencies": {
         "chalk": "^4.0.0",
-        "commander": "^5.1.0"
+        "commander": "^5.1.0",
+        "download-git-repo": "^3.0.2",
+        "fs-extra": "^0.8.1",
+        "glob": "^7.1.6",
+        "ora": "^4.0.4"
     }
 }
