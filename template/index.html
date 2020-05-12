@@ -1,124 +1,175 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>页面标题</title>
-    <!-- 设置`maximum-scale`以解决一些兼容问题 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
-    <meta name="format-detection" content="telephone=no">
-    <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon">
-    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
-    <script>
-        if ('addEventListener' in document) {
-            document.addEventListener('DOMContentLoaded', function() {
-                FastClick.attach(document.body);
-            }, false);
-        }
-        // 一些安卓手机不支持romise
-        if(!window.Promise) {
-            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
-        }
-    </script>
-    <script>
-        /**
-         * rem布局
-         * @param designWidth {number} 设计稿的实际宽度值，需要根据实际设置
-         * @param maxWidth {number} 制作稿的最大宽度值，需要根据实际设置
-         */
-        (function (designWidth, maxWidth) {
-            designWidth = designWidth || 750
-            maxWidth = maxWidth || 750
-
-            var doc = document
-            var win = window
-            var docEl = doc.documentElement
-            var remStyle = doc.createElement('style')
-            var dpr = win.devicePixelRatio || 1
-            var tid
-
-            function checkRootFondSizeAgain () { // 部分安卓用户会将手机字体设置得很大，导致页面样式错乱，用这个方法进行纠偏
-                var rootFontSizeSetByUs = parseFloat(document.documentElement.style.fontSize)
-                var rootFontSizeInActual = parseFloat(window.getComputedStyle(document.getElementsByTagName("html")[0]).fontSize)
-                if (Math.abs(rootFontSizeInActual - rootFontSizeSetByUs) < 1) { return }
-                var fontSize = rootFontSizeSetByUs / (rootFontSizeInActual / rootFontSizeSetByUs) + 'px'
-                remStyle.innerHTML = 'html{font-size:' + fontSize + ' !important;}'
-                docEl.style.fontSize = fontSize
+    <head>
+        <meta charset="UTF-8" />
+        <title>页面标题</title>
+        <!-- 设置`maximum-scale`以解决一些兼容问题 -->
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <link
+            rel="shortcut icon"
+            href="./static/favicon.ico"
+            type="image/x-icon"
+        />
+        <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+        <script>
+            if ("addEventListener" in document) {
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    function () {
+                        FastClick.attach(document.body);
+                    },
+                    false
+                );
             }
+            // 一些安卓手机不支持romise
+            if (!window.Promise) {
+                document.writeln(
+                    '<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' +
+                        ">" +
+                        "<" +
+                        "/" +
+                        "script>"
+                );
+            }
+        </script>
+        <script>
+            /**
+             * rem布局
+             * @param designWidth {number} 设计稿的实际宽度值，需要根据实际设置
+             * @param maxWidth {number} 制作稿的最大宽度值，需要根据实际设置
+             */
+            (function (designWidth, maxWidth) {
+                designWidth = designWidth || 750;
+                maxWidth = maxWidth || 750;
 
-            function setRootFontSize() {
-                var width = docEl.getBoundingClientRect().width
-                if (width > maxWidth) {
-                    width = maxWidth
+                var doc = document;
+                var win = window;
+                var docEl = doc.documentElement;
+                var remStyle = doc.createElement("style");
+                var dpr = win.devicePixelRatio || 1;
+                var tid;
+
+                function checkRootFondSizeAgain() {
+                    // 部分安卓用户会将手机字体设置得很大，导致页面样式错乱，用这个方法进行纠偏
+                    var rootFontSizeSetByUs = parseFloat(
+                        document.documentElement.style.fontSize
+                    );
+                    var rootFontSizeInActual = parseFloat(
+                        window.getComputedStyle(
+                            document.getElementsByTagName("html")[0]
+                        ).fontSize
+                    );
+                    if (
+                        Math.abs(rootFontSizeInActual - rootFontSizeSetByUs) < 1
+                    ) {
+                        return;
+                    }
+                    var fontSize =
+                        rootFontSizeSetByUs /
+                            (rootFontSizeInActual / rootFontSizeSetByUs) +
+                        "px";
+                    remStyle.innerHTML =
+                        "html{font-size:" + fontSize + " !important;}";
+                    docEl.style.fontSize = fontSize;
                 }
-                var rem = parseInt(width * 100 / designWidth, 10)
-                var fontSize = rem + 'px'
-                remStyle.innerHTML = 'html{font-size:' + fontSize + ' !important;}'
-                docEl.style.fontSize = fontSize
 
-                checkRootFondSizeAgain()
-            }
+                function setRootFontSize() {
+                    var width = docEl.getBoundingClientRect().width;
+                    if (width > maxWidth) {
+                        width = maxWidth;
+                    }
+                    var rem = parseInt((width * 100) / designWidth, 10);
+                    var fontSize = rem + "px";
+                    remStyle.innerHTML =
+                        "html{font-size:" + fontSize + " !important;}";
+                    docEl.style.fontSize = fontSize;
 
-            if (docEl.firstElementChild) {
-                docEl.firstElementChild.appendChild(remStyle)
-            } else {
-                var wrap = doc.createElement('div')
-                wrap.appendChild(remStyle)
-                doc.write(wrap.innerHTML)
-                wrap = null
-            }
-            // 要等`wiewport`设置好后才能执行`setRootFontSize`，不然`setRootFontSize`会执行2次
-            setRootFontSize()
-
-            win.addEventListener('resize', function () {
-                clearTimeout(tid) // 防止执行两次
-                tid = setTimeout(setRootFontSize, 300)
-            }, false)
-
-            win.addEventListener('pageshow', function (e) {
-                if (e.persisted) {
-                    // 浏览器后退的时候重新计算
-                    clearTimeout(tid)
-                    tid = setTimeout(setRootFontSize, 300)
+                    checkRootFondSizeAgain();
                 }
-            }, false)
 
-            // adjust body font size
-            function setBodyFontSize () {
-                if (doc.body) {
-                    doc.body.style.fontSize = (12 * dpr) + 'px'
+                if (docEl.firstElementChild) {
+                    docEl.firstElementChild.appendChild(remStyle);
                 } else {
-                    doc.addEventListener('DOMContentLoaded', setBodyFontSize)
+                    var wrap = doc.createElement("div");
+                    wrap.appendChild(remStyle);
+                    doc.write(wrap.innerHTML);
+                    wrap = null;
                 }
-            }
-            setBodyFontSize()
+                // 要等`wiewport`设置好后才能执行`setRootFontSize`，不然`setRootFontSize`会执行2次
+                setRootFontSize();
 
-            // 检测是否支持0.5px，如果支持则给html元素添加hairlines这个class
-            if (dpr >= 2) {
-                var fakeBody = doc.createElement('body')
-                var testElement = doc.createElement('div')
-                testElement.style.border = '.5px solid transparent'
-                fakeBody.appendChild(testElement)
-                docEl.appendChild(fakeBody)
-                if (testElement.offsetHeight === 1) {
-                    docEl.classList.add('hairlines')
+                win.addEventListener(
+                    "resize",
+                    function () {
+                        clearTimeout(tid); // 防止执行两次
+                        tid = setTimeout(setRootFontSize, 300);
+                    },
+                    false
+                );
+
+                win.addEventListener(
+                    "pageshow",
+                    function (e) {
+                        if (e.persisted) {
+                            // 浏览器后退的时候重新计算
+                            clearTimeout(tid);
+                            tid = setTimeout(setRootFontSize, 300);
+                        }
+                    },
+                    false
+                );
+
+                // adjust body font size
+                function setBodyFontSize() {
+                    if (doc.body) {
+                        doc.body.style.fontSize = 12 * dpr + "px";
+                    } else {
+                        doc.addEventListener(
+                            "DOMContentLoaded",
+                            setBodyFontSize
+                        );
+                    }
                 }
-                docEl.removeChild(fakeBody)
-            }
-        })(750, 750)
-    </script>
-</head>
-<body>
-<div id="app" class="site-wrapper"></div>
-<script src="./static/polyfill.min.js"></script>
-<script src="./static/jquery-3.2.1.min.js"></script>
-<script src="./static/vue.min.js"></script>
-<script>
-    /**
-     * js路径后追加时间戳作为版本号，目的是尽量减少缓存。
-     * 如果需要缓存，可以在有修改文件的情况下手动维护版本号。
-     * 由于大部分情况下样式就算缓存被更新的慢一点问题都不大，但是js的改动很可能是修复了某些bug，缓存可能需要及时更新
-     */
-    document.writeln('<script src="./scripts/app.js?v='+new Date().getTime()+'">'+'<'+'/'+'script>');
-</script>
-</body>
+                setBodyFontSize();
+
+                // 检测是否支持0.5px，如果支持则给html元素添加hairlines这个class
+                if (dpr >= 2) {
+                    var fakeBody = doc.createElement("body");
+                    var testElement = doc.createElement("div");
+                    testElement.style.border = ".5px solid transparent";
+                    fakeBody.appendChild(testElement);
+                    docEl.appendChild(fakeBody);
+                    if (testElement.offsetHeight === 1) {
+                        docEl.classList.add("hairlines");
+                    }
+                    docEl.removeChild(fakeBody);
+                }
+            })(750, 750);
+        </script>
+    </head>
+    <body>
+        <div id="app" class="site-wrapper"></div>
+        <script src="./static/polyfill.min.js"></script>
+        <script src="./static/jquery-3.2.1.min.js"></script>
+        <script src="./static/vue.min.js"></script>
+        <script>
+            /**
+             * js路径后追加时间戳作为版本号，目的是尽量减少缓存。
+             * 如果需要缓存，可以在有修改文件的情况下手动维护版本号。
+             * 由于大部分情况下样式就算缓存被更新的慢一点问题都不大，但是js的改动很可能是修复了某些bug，缓存可能需要及时更新
+             */
+            document.writeln(
+                '<script src="./scripts/app.js?v=' +
+                    new Date().getTime() +
+                    '">' +
+                    "<" +
+                    "/" +
+                    "script>"
+            );
+        </script>
+    </body>
 </html>
