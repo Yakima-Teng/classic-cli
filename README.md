@@ -62,6 +62,8 @@ classic
 
 * 🚀 可通过在文件头部添加`classic-compress:false`注释来自动格式化（美化）css、js代码，保持较统一的代码风格。
 
+* 🦊 自动美化HTML代码。
+
 * 🛠 借助babel，支持使用主流的ES6+新特性。
 
 注：
