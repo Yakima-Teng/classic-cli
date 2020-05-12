@@ -1,6 +1,6 @@
 {
     "name": "classic-cli",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "一个快速创建H5专题页的命令行工具，方便使用者使用构建工具进行无侵入式开发（可随时脱离构建工具）。",
     "main": "bin/classic",
     "bin": {
