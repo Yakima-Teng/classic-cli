@@ -106,3 +106,4 @@ dist
 .idea
 /test
 .DS_Store
+/temp
