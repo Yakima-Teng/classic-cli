@@ -8,7 +8,7 @@
     },
     "scripts": {
         "classic": "node bin/classic",
-        "test": "npm run classic -- -p 8080 -t remote"
+        "test": "cd temp && node ../bin/classic -p 8080 -t remote"
     },
     "files": [
         "bin",
