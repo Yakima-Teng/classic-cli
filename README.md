@@ -1,6 +1,6 @@
 # classic-cli
 
-**This repository is deprecated and not maintained any more, please use [html5-cli](https://github.com/Yakima-Teng/html5-cli) instead.**
+# **This repository is deprecated and not maintained any more, please use [html5-cli](https://github.com/Yakima-Teng/html5-cli) instead.**
 
 <p align="center">
   <a href="https://npmcharts.com/compare/classic-cli?minimal=true">
